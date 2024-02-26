@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+///
+///
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #6c6a6a;
+  text-align: left;
+  padding: 8px;
+  a {
+    text-decoration: none; // Loại bỏ gạch chân
+    color: rgb(168, 215, 219);
+  }
+}
+
+tr:nth-child(even) {
+  background-color: #333333;
+}

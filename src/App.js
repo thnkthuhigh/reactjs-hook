@@ -1,17 +1,19 @@
 import logo from "./logo.svg";
 import "./App.scss";
 import Nav from "./views/Nav";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import Todo from "./views/Todo";
 // import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Country from "./views/Country";
 
 const App = () => {
   let [Name, setName] = useState("Thanh");
   let [Copy, setCopy] = useState("");
   const [Todos, setTodos] = useState([
-    { id: 1, title: "Watching video!" },
-    { id: 2, title: "Fixing Bug!" },
+    { id: 1, title: "Watching video!", type: "non" },
+    { id: 2, title: "Fixing Bug!", type: "non" },
   ]);
 
   const handleClick = () => {
@@ -19,7 +21,11 @@ const App = () => {
       alert("Please select a video");
       return;
     }
-    let todo = { id: Math.floor(Math.random() * 1000), title: Copy };
+    let todo = {
+      id: Math.floor(Math.random() * 1000),
+      title: Copy,
+      type: "thanh",
+    };
     setTodos([...Todos, todo]);
     setCopy("");
   };
@@ -28,6 +34,16 @@ const App = () => {
     setCopy(event.target.value);
   };
 
+  const handleOnDelete = (id) => {
+    let currentTodo = Todos;
+    currentTodo = Todos.filter((item) => item.id !== id);
+    setTodos(currentTodo);
+  };
+
+  useEffect(() => {
+    console.log("Todos changed", Todos);
+  }, [Todos]); //chay moi khi dc render
+
   return (
     <div className="App">
       <Nav />
@@ -35,7 +51,14 @@ const App = () => {
         <img src={logo} className="App-logo" alt="logo" />
 
         <h2>Hello {Name}</h2>
-        <Todo Todos={Todos} />
+
+        <Country />
+        {/* <Todo Todos={Todos} title={"All todo"} Delete={handleOnDelete} />
+        <Todo
+          Todos={Todos.filter((item) => item.type === "thanh")}
+          title={"Thanh todo"}
+          Delete={handleOnDelete}
+        />
         <input
           type="text"
           value={Copy}
@@ -49,7 +72,7 @@ const App = () => {
           }}
         >
           Click me
-        </button>
+        </button> */}
       </header>
     </div>
   );
