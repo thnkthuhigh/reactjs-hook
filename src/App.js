@@ -1,14 +1,11 @@
-import { useState, useEffect } from "react";
-
+import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.scss";
-import "react-toastify/dist/ReactToastify.css";
-import { Routes, Route } from "react-router-dom";
-// import { ToastContainer, toast } from "react-toastify";
-import Todo from "./views/Todo";
 import Nav from "./views/Nav";
-import Country from "./views/Country";
 import { Clock } from "./views/Clock";
+import Country from "./views/Country";
+import Todo from "./views/Todo";
 
 const App = () => {
   let [Name, setName] = useState("Thanh");
@@ -45,41 +42,44 @@ const App = () => {
   useEffect(() => {
     console.log("Todos changed", Todos);
   }, [Todos]); //chay moi khi dc render
-
+  const clockElement = <Clock />;
+  const countryElement = <Country />;
+  const todoElement = (
+    <>
+      <Todo Todos={Todos} title={"All todo"} Delete={handleOnDelete} />
+      <Todo
+        Todos={Todos.filter((item) => item.type === "thanh")}
+        title={"Thanh todo"}
+        Delete={handleOnDelete}
+      />
+      <input
+        type="text"
+        value={Copy}
+        onChange={(event) => {
+          handleOnchangeName(event);
+        }}
+      />
+      <button
+        onClick={() => {
+          handleClick();
+        }}
+      >
+        Click me
+      </button>
+    </>
+  );
   return (
     <div className="App">
+      <Nav />
       <header className="App-header">
-        <Nav />
         <img src={logo} className="App-logo" alt="logo" />
-        <h2>Hello {Name}</h2>{" "}
+        <h2>Hello World</h2>
         <Routes>
-          <Route path="/" element={<App />}>
-            <Route path="Todo" element={<Todo />} />
-            <Route path="Clock" element={<Clock />} />
-          </Route>
+          <Route path="/" element={clockElement} />
+          <Route path="Clock" element={<Clock />} />
+          <Route path="Country" element={countryElement} />
+          <Route path="Todo" element={todoElement} />
         </Routes>
-        {/* <Clock />
-        <Country /> */}
-        {/* <Todo Todos={Todos} title={"All todo"} Delete={handleOnDelete} />
-        <Todo
-          Todos={Todos.filter((item) => item.type === "thanh")}
-          title={"Thanh todo"}
-          Delete={handleOnDelete}
-        />
-        <input
-          type="text"
-          value={Copy}
-          onChange={(event) => {
-            handleOnchangeName(event);
-          }}
-        />
-        <button
-          onClick={() => {
-            handleClick();
-          }}
-        >
-          Click me
-        </button> */}
       </header>
     </div>
   );
