@@ -1,4 +1,5 @@
 import "../App.scss";
+import React, { useState } from "react";
 import useFetch from "../customize/fetch";
 
 const Country = () => {
@@ -8,12 +9,34 @@ const Country = () => {
     data: Country,
     isLoading,
     isErr,
+    setData,
   } = useFetch("https://restcountries.com/v3.1/all");
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Function to filter countries based on search term
+  const filterCountries = () => {
+    return Country.filter((country) =>
+      country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  };
+
+  // Event handler for input change
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+    setData(filterCountries);
+  };
+
   return (
     <>
       {/* chua viet gì het cbi viet bo loc */}
       <span>
-        <input />
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(event) => handleInputChange(event)}
+          placeholder="Search by country name..."
+        />
         <button> Loc </button>
       </span>
       <br />
@@ -48,20 +71,20 @@ const Country = () => {
               );
             })}
 
-          {isLoading === true && (
+          {isLoading === true ? (
             <tr>
-              <td colSpan={"5"} style={{ textAlign: "center" }}>
+              <td colSpan={"6"} style={{ textAlign: "center" }}>
                 isLoading...
               </td>
             </tr>
-          )}
-          {isErr === true && (
+          ) : null}
+          {isLoading === false && isErr === true ? (
             <tr>
-              <td colSpan={"5"} style={{ textAlign: "center" }}>
+              <td colSpan={"6"} style={{ textAlign: "center" }}>
                 Something wrong...
               </td>
             </tr>
-          )}
+          ) : null}
         </tbody>
       </table>
     </>

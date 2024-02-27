@@ -5,18 +5,12 @@ import { NavLink } from "react-router-dom";
 const Nav = () => {
   return (
     <div className="topnav">
-      <NavLink activeClassName="active" to="/" exact>
+      <NavLink to="/" exact="true">
         Home
       </NavLink>
-      <NavLink activeClassName="active" to="/Todo" exact>
-        Todo
-      </NavLink>
-      <NavLink activeClassName="active" to="/Country">
-        Country
-      </NavLink>
-      <NavLink activeClassName="active" to="/Clock">
-        Clock
-      </NavLink>
+      <NavLink to="/Todo">Todo</NavLink>
+      <NavLink to="/Country">Country</NavLink>
+      <NavLink to="/Clock">Clock</NavLink>
     </div>
   );
 };
