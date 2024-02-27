@@ -1,14 +1,15 @@
 import "./Nav.scss";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
     <div className="topnav">
-      <a className="active" href="#home">
+      <Link to="/" className="active">
         Home
-      </a>
-      <a href="#news">News</a>
-      <a href="#contact">Contact</a>
-      <a href="#about">About</a>
+      </Link>
+      <Link to="/Clock">Todo</Link>
+      <Link to="/Country">Country</Link>
+      <Link to="/Clock">Clock</Link>
     </div>
   );
 };

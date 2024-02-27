@@ -1,12 +1,14 @@
-import logo from "./logo.svg";
-import "./App.scss";
-import Nav from "./views/Nav";
 import { useState, useEffect } from "react";
 
-import Todo from "./views/Todo";
-// import { ToastContainer, toast } from "react-toastify";
+import logo from "./logo.svg";
+import "./App.scss";
 import "react-toastify/dist/ReactToastify.css";
+import { Routes, Route } from "react-router-dom";
+// import { ToastContainer, toast } from "react-toastify";
+import Todo from "./views/Todo";
+import Nav from "./views/Nav";
 import Country from "./views/Country";
+import { Clock } from "./views/Clock";
 
 const App = () => {
   let [Name, setName] = useState("Thanh");
@@ -46,13 +48,18 @@ const App = () => {
 
   return (
     <div className="App">
-      <Nav />
       <header className="App-header">
+        <Nav />
         <img src={logo} className="App-logo" alt="logo" />
-
-        <h2>Hello {Name}</h2>
-
-        <Country />
+        <h2>Hello {Name}</h2>{" "}
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route path="Todo" element={<Todo />} />
+            <Route path="Clock" element={<Clock />} />
+          </Route>
+        </Routes>
+        {/* <Clock />
+        <Country /> */}
         {/* <Todo Todos={Todos} title={"All todo"} Delete={handleOnDelete} />
         <Todo
           Todos={Todos.filter((item) => item.type === "thanh")}

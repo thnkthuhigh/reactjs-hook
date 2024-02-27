@@ -21,6 +21,7 @@ const Country = () => {
       <table>
         <thead>
           <tr>
+            <th></th>
             <th>Quốc gia</th>
             <th>Thủ đô</th>
             <th>Khu vực</th>
@@ -32,9 +33,10 @@ const Country = () => {
           {isLoading === false &&
             Country &&
             Country.length > 0 &&
-            Country.map((item) => {
+            Country.map((item, index) => {
               return (
                 <tr key={item.name.common}>
+                  <td>{index}</td>
                   <td>{item.name.common}</td>
                   <td>{item.capital}</td>
                   <td>{item.region}</td>
