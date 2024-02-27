@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+
 import logo from "./logo.svg";
 import "./App.scss";
 import Nav from "./views/Nav";
 import { Clock } from "./views/Clock";
 import Country from "./views/Country";
 import Todo from "./views/Todo";
+
+const Home = () => {
+  return <div>Welcome to Thanh page</div>;
+};
 
 const App = () => {
   let [Name, setName] = useState("Thanh");
@@ -68,15 +73,16 @@ const App = () => {
       </button>
     </>
   );
+
   return (
     <div className="App">
       <Nav />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h2>Hello World</h2>
+        <h2>Hello {Name}</h2>
         <Routes>
-          <Route path="/" element={clockElement} />
-          <Route path="Clock" element={<Clock />} />
+          <Route path="/" element={<Home />} />
+          <Route path="Clock" element={clockElement} />
           <Route path="Country" element={countryElement} />
           <Route path="Todo" element={todoElement} />
         </Routes>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const Clock = () => {
-  const [Time, setTime] = useState(0);
+  const [Time, setTime] = useState(10);
   const [Reset, setReset] = useState();
 
   useEffect(() => {
