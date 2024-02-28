@@ -7,6 +7,9 @@ import Nav from "./views/Nav";
 import { Clock } from "./views/Clock";
 import Country from "./views/Country";
 import Todo from "./views/Todo";
+import Blog from "./views/Blog";
+import BlogDetail from "./views/BlogDeteil";
+import NotFound from "./views/NotFound";
 
 const Home = () => {
   return <div>Welcome to Thanh page</div>;
@@ -79,12 +82,14 @@ const App = () => {
       <Nav />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h2>Hello {Name}</h2>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="Clock" element={clockElement} />
           <Route path="Country" element={countryElement} />
           <Route path="Todo" element={todoElement} />
+          <Route path="Blog" element={<Blog />} />
+          <Route path="Blog/:id" element={<BlogDetail />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </header>
     </div>

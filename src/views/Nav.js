@@ -11,6 +11,7 @@ const Nav = () => {
       <NavLink to="/Todo">Todo</NavLink>
       <NavLink to="/Country">Country</NavLink>
       <NavLink to="/Clock">Clock</NavLink>
+      <NavLink to="/Blog">Blog</NavLink>
     </div>
   );
 };

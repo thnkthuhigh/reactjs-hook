@@ -10,7 +10,7 @@ const Country = () => {
     isLoading,
     isErr,
     setData,
-  } = useFetch("https://restcountries.com/v3.1/all");
+  } = useFetch("https://restcountries.com/v3.1/all", true);
 
   const [searchTerm, setSearchTerm] = useState("");
 
