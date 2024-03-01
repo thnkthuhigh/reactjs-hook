@@ -33,11 +33,10 @@ const Country = () => {
       <span>
         <input
           type="text"
-          value={searchTerm}
-          onChange={(event) => handleInputChange(event)}
+          // value={searchTerm}
+          // onChange={(event) => handleInputChange(event)}
           placeholder="Search by country name..."
         />
-        <button> Loc </button>
       </span>
       <br />
       {/** */}

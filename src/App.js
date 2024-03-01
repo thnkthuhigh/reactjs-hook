@@ -4,13 +4,14 @@ import { Route, Routes } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.scss";
 import Nav from "./views/Nav";
-import { Clock } from "./views/Clock";
+import Clock from "./views/Clock";
 import Country from "./views/Country";
 import Todo from "./views/Todo";
 import Blog from "./views/Blog";
 import BlogDetail from "./views/BlogDeteil";
 import NotFound from "./views/NotFound";
 import Love from "./views/lovePage/Love";
+import AddNewBlog from "./views/AddNewBlog";
 
 const Home = () => {
   return <div>Welcome to Thanh page</div>;
@@ -61,6 +62,7 @@ const App = () => {
       />
       <input
         type="text"
+        style={{ width: "12%" }}
         value={Copy}
         onChange={(event) => {
           handleOnchangeName(event);
@@ -88,7 +90,8 @@ const App = () => {
           <Route path="Todo" element={todoElement} />
           <Route path="Blog" element={<Blog />} />
           <Route path="Blog/:id" element={<BlogDetail />} />
-          <Route path="Love" element={<Love />} />
+          {/* <Route path="Love" element={<Love />} /> */}
+          <Route path="Love" element={<AddNewBlog />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

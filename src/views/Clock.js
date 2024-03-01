@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 
 const Clock = () => {
   const [Time, setTime] = useState(10);
-  const [Reset, setReset] = useState();
+  const [Reset, setReset] = useState("");
+  const [isError, setError] = useState(false);
 
   useEffect(() => {
     var ck = setTimeout(() => {
@@ -14,7 +15,9 @@ const Clock = () => {
   }, [Time]);
 
   const handleOnChangeTime = (event) => {
-    setReset(event.target.value);
+    const value = parseInt(event.target.value);
+
+    value >= 0 ? setReset(value) : setReset(0);
   };
 
   return (
@@ -23,8 +26,10 @@ const Clock = () => {
         <div>{Time} - Hook</div>
       ) : (
         <div>
-          Settime <> </>
+          Settime{" "}
           <input
+            type="number"
+            value={Reset}
             onChange={(event) => {
               handleOnChangeTime(event);
             }}
@@ -32,15 +37,21 @@ const Clock = () => {
           Hook{" "}
           <button
             onClick={() => {
-              setTime(Reset);
+              if (!Number.isInteger(Reset)) {
+                setError(true);
+              } else {
+                setTime(Reset);
+                setError(false);
+              }
             }}
           >
             Reset
           </button>
+          {isError && <div>Please enter a valid integer.</div>}
         </div>
       )}
     </div>
   );
 };
 
-export { Clock };
+export default Clock;
