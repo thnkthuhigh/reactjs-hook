@@ -10,6 +10,7 @@ import Todo from "./views/Todo";
 import Blog from "./views/Blog";
 import BlogDetail from "./views/BlogDeteil";
 import NotFound from "./views/NotFound";
+import Love from "./views/lovePage/Love";
 
 const Home = () => {
   return <div>Welcome to Thanh page</div>;
@@ -87,6 +88,8 @@ const App = () => {
           <Route path="Todo" element={todoElement} />
           <Route path="Blog" element={<Blog />} />
           <Route path="Blog/:id" element={<BlogDetail />} />
+          <Route path="Love" element={<Love />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </header>

@@ -1,0 +1,23 @@
+button {
+  background-color: #4caf50; /* Màu nền của button */
+  border: none; /* Không có viền */
+  color: white; /* Màu chữ */
+  padding: 10px 20px; /* Kích thước của button */
+  text-align: center; /* Căn giữa nội dung */
+  text-decoration: none; /* Không gạch chân */
+  display: inline-block;
+  font-size: 16px; /* Kích thước chữ */
+  margin: 4px 2px;
+  transition-duration: 0.4s; /* Thời gian hiệu ứng */
+  cursor: pointer; /* Con trỏ chuột khi hover vào button */
+  border-radius: 8px; /* Bo tròn góc của button */
+}
+
+/* Hiệu ứng màu xanh khi hover vào */
+button:hover {
+  background-color: #45a049; /* Màu nền mới khi hover vào */
+}
+
+.er {
+  background-color: #af4c4c;
+}

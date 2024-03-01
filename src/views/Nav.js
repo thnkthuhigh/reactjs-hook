@@ -12,6 +12,7 @@ const Nav = () => {
       <NavLink to="/Country">Country</NavLink>
       <NavLink to="/Clock">Clock</NavLink>
       <NavLink to="/Blog">Blog</NavLink>
+      <NavLink to="/Love">Love u</NavLink>
     </div>
   );
 };
