@@ -6,36 +6,30 @@ const useFetch = (url, dataCountry) => {
   const [isLoading, setisLoading] = useState(true);
   const [isErr, setisErr] = useState(true);
 
-  useEffect(
-    () => {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(url);
-
-          let data = response && response.data ? response.data : [];
-
-          setData(data);
-          setisLoading(false);
-          setisErr(false);
-        } catch (error) {
-          setisLoading(false);
-          setisErr(true);
-        }
-      };
-
-      if (data && dataCountry === true) {
-        setTimeout(() => {
-          fetchData();
-        }, 2000);
-      } else {
-        setTimeout(() => {
-          fetchData();
-        });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url);
+        let responseData = response && response.data ? response.data : [];
+        setData(responseData);
+        setisLoading(false);
+        setisErr(false);
+      } catch (error) {
+        setisLoading(false);
+        setisErr(true);
       }
-    },
-    [url],
-    [data]
-  );
+    };
+
+    if (dataCountry === true) {
+      setTimeout(() => {
+        fetchData();
+      }, 2000);
+    } else {
+      setTimeout(() => {
+        fetchData();
+      });
+    }
+  }, [url, dataCountry]); // Thêm dataCountry vào dependency array
 
   return { data, isLoading, isErr };
 };

@@ -16,7 +16,7 @@ const Home = () => {
 };
 
 const App = () => {
-  let [Name, setName] = useState("Thanh");
+  // let [Name, setName] = useState("Thanh");
   let [Copy, setCopy] = useState("");
   const [Todos, setTodos] = useState([
     { id: 1, title: "Watching video!", type: "non" },
