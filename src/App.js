@@ -47,9 +47,7 @@ const App = () => {
     setTodos(currentTodo);
   };
 
-  useEffect(() => {
-    console.log("Todos changed", Todos);
-  }, [Todos]); //chay moi khi dc render
+  useEffect(() => {}, [Todos]); //chay moi khi dc render
   const clockElement = <Clock />;
   const countryElement = <Country />;
   const todoElement = (

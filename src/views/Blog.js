@@ -5,18 +5,17 @@ import { Link } from "react-router-dom";
 import "./Blog.scss";
 
 const Blog = () => {
-  const {
-    data: dataBlogs,
-    isLoading,
-    isErr,
-    setData,
-  } = useFetch("https://jsonplaceholder.typicode.com/posts", false);
+  const { data, isLoading, isErr } = useFetch(
+    "https://jsonplaceholder.typicode.com/posts",
+    false
+  );
 
-  console.log(dataBlogs);
+  const dataBlogs = data.slice(0, 9);
 
   return (
     <div className="blog-container">
-      {dataBlogs &&
+      {isLoading === false &&
+        dataBlogs &&
         dataBlogs.length > 0 &&
         dataBlogs.map((item) => (
           <div className="blog-item" key={item.id}>
@@ -27,6 +26,10 @@ const Blog = () => {
             </Link>
           </div>
         ))}
+      {isLoading === true ? <div>isLoading...</div> : null}
+      {isLoading === false && isErr === true ? (
+        <div>Something wrong...</div>
+      ) : null}
     </div>
   );
 };

@@ -14,11 +14,7 @@ const useFetch = (url, dataCountry) => {
 
           let data = response && response.data ? response.data : [];
 
-          if (dataCountry === false) {
-            setData(data.slice(0, 9));
-          } else {
-            setData(data);
-          }
+          setData(data);
           setisLoading(false);
           setisErr(false);
         } catch (error) {
@@ -26,15 +22,22 @@ const useFetch = (url, dataCountry) => {
           setisErr(true);
         }
       };
-      setTimeout(() => {
-        fetchData();
-      }, 1000);
+
+      if (data && dataCountry === true) {
+        setTimeout(() => {
+          fetchData();
+        }, 2000);
+      } else {
+        setTimeout(() => {
+          fetchData();
+        });
+      }
     },
     [url],
     [data]
   );
 
-  return { data, isLoading, isErr, setData };
+  return { data, isLoading, isErr };
 };
 
 export default useFetch;
