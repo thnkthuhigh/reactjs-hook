@@ -40,9 +40,10 @@ const Love = () => {
     <>
       {check === false ? (
         <div>
-          Muốn nói gì với tui <br />
+          Muốn nói gì với tui <br /> <br />
           {/* Sử dụng giá trị của state `love` trong input */}
           <input value={love} onChange={handleOnChange} />
+          <br /> <br />
           <button onClick={() => handleOnClick()}> Gửi </button>
         </div>
       ) : (

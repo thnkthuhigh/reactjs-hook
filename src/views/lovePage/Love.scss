@@ -10,7 +10,8 @@ button {
   margin: 4px 2px;
   transition-duration: 0.4s; /* Thời gian hiệu ứng */
   cursor: pointer; /* Con trỏ chuột khi hover vào button */
-  border-radius: 8px; /* Bo tròn góc của button */
+  border-radius: 8px;
+  min-width: 100px; /* Bo tròn góc của button */
 }
 
 /* Hiệu ứng màu xanh khi hover vào */
@@ -20,4 +21,20 @@ button:hover {
 
 .er {
   background-color: #af4c4c;
+  max-width: 1000px;
+}
+
+/* Định dạng input khi không được focus */
+input {
+  width: 80%; /* Độ rộng 100% của phần tử chứa input */
+  padding: 5px; /* Khoảng cách padding bên trong input */
+  border: 1px solid #ccc; /* Viền input */
+  border-radius: 5px; /* Bo tròn góc */
+}
+
+/* Định dạng input khi được focus */
+input:focus {
+  outline: none; /* Loại bỏ đường viền khi focus */
+  border-color: #007bff; /* Màu viền khi focus */
+  box-shadow: 0 0 5px #007bff; /* Hiển thị shadow khi focus */
 }
