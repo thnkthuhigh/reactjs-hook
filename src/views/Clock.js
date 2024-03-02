@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import moment from "moment";
+import "./Clock.scss";
 
 const Clock = () => {
   const [Time, setTime] = useState(10);
   const [Reset, setReset] = useState("");
   const [isError, setError] = useState(false);
-
+  const [clock, setClock] = useState();
   useEffect(() => {
     var ck = setTimeout(() => {
       setTime(Time - 1);
@@ -20,8 +22,13 @@ const Clock = () => {
     value >= 0 ? setReset(value) : setReset(0);
   };
 
+  setTimeout(() => {
+    setClock(moment().format("DD-MM-YYYY, h:mm:ss A"));
+  }, 1000);
+
   return (
-    <div>
+    <div className="Clock-container">
+      <div className="clock">{clock}</div>
       {Time !== 0 ? (
         <div>{Time} - Hook</div>
       ) : (
@@ -36,6 +43,7 @@ const Clock = () => {
           />{" "}
           Hook{" "}
           <button
+            className="btnds"
             onClick={() => {
               if (!Number.isInteger(Reset)) {
                 setError(true);
