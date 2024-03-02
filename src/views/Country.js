@@ -1,5 +1,4 @@
 import "../App.scss";
-import React, { useState } from "react";
 import useFetch from "../customize/fetch";
 
 const Country = () => {
@@ -11,21 +10,6 @@ const Country = () => {
     isErr,
     setData,
   } = useFetch("https://restcountries.com/v3.1/all", true);
-
-  const [searchTerm, setSearchTerm] = useState("");
-
-  // Function to filter countries based on search term
-  const filterCountries = () => {
-    return Country.filter((country) =>
-      country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  };
-
-  // Event handler for input change
-  const handleInputChange = (event) => {
-    setSearchTerm(event.target.value);
-    setData(filterCountries);
-  };
 
   return (
     <>
