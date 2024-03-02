@@ -30,6 +30,10 @@ const Blog = () => {
     setDataBlogs([blog, ...dataBlogs]); // Add the new blog at the beginning of the list
   };
 
+  const handleDelete = (blog) => {
+    setDataBlogs(dataBlogs.filter((item) => item.id !== blog.id));
+  };
+
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
@@ -51,7 +55,12 @@ const Blog = () => {
           dataBlogs.length > 0 &&
           dataBlogs.map((item, index) => (
             <div className="blog-item" key={index}>
-              <div className="Title">Title: {item.title}</div>
+              <div className="Title">
+                <div>Title: {item.title} </div>
+                <div className="btnds" onClick={() => handleDelete(item)}>
+                  X
+                </div>
+              </div>
               <div className="body">Content: {item.body}</div>
               <Link to={`/Blog/${item.id}`} relative="path">
                 <button className="btnds"> Views detail</button>{" "}
