@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useFetch from "../customize/fetch";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 
 import "./Blog.scss";
-import AddNewBlog from "./AddNewBlog";
+import AddNewBlogs from "./AddNewBlog";
 
 const Blog = () => {
   const [show, setShow] = useState(false);
-
+  const [dataBlogs, setDataBlogs] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -18,7 +18,17 @@ const Blog = () => {
     false
   );
 
-  const dataBlogs = data.slice(0, 9);
+  useEffect(() => {
+    // Update dataBlogs only after fetching data
+    if (data && data.length > 0) {
+      setDataBlogs(data.slice(0, 9));
+    }
+  }, [data]);
+
+  const AddNewBlog = (blog) => {
+    setShow(false);
+    setDataBlogs([blog, ...dataBlogs]); // Add the new blog at the beginning of the list
+  };
 
   return (
     <>
@@ -27,11 +37,11 @@ const Blog = () => {
       </Button>
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Add new blog</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AddNewBlog />
+          <AddNewBlogs AddNewBlog={AddNewBlog} />
         </Modal.Body>
       </Modal>
 
@@ -39,12 +49,12 @@ const Blog = () => {
         {isLoading === false &&
           dataBlogs &&
           dataBlogs.length > 0 &&
-          dataBlogs.map((item) => (
-            <div className="blog-item" key={item.id}>
+          dataBlogs.map((item, index) => (
+            <div className="blog-item" key={index}>
               <div className="Title">Title: {item.title}</div>
               <div className="body">Content: {item.body}</div>
               <Link to={`/Blog/${item.id}`} relative="path">
-                <button> Views deteil</button>{" "}
+                <button className="btnds"> Views detail</button>{" "}
               </Link>
             </div>
           ))}

@@ -1,4 +1,4 @@
-button {
+.btn-love {
   background-color: #4caf50; /* Màu nền của button */
   border: none; /* Không có viền */
   color: white; /* Màu chữ */
@@ -15,7 +15,7 @@ button {
 }
 
 /* Hiệu ứng màu xanh khi hover vào */
-button:hover {
+.btn-love:hover {
   background-color: #45a049; /* Màu nền mới khi hover vào */
 }
 

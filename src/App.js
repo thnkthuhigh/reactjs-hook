@@ -11,7 +11,6 @@ import Blog from "./views/Blog";
 import BlogDetail from "./views/BlogDeteil";
 import NotFound from "./views/NotFound";
 import Love from "./views/lovePage/Love";
-import AddNewBlog from "./views/AddNewBlog";
 
 const Home = () => {
   return <div>Welcome to Thanh page</div>;
@@ -27,7 +26,7 @@ const App = () => {
 
   const handleClick = () => {
     if (!Copy) {
-      alert("Please select a video");
+      alert("Nhập dữ liệu");
       return;
     }
     let todo = {
@@ -69,6 +68,7 @@ const App = () => {
         }}
       />
       <button
+        className="btnds"
         onClick={() => {
           handleClick();
         }}
@@ -90,8 +90,7 @@ const App = () => {
           <Route path="Todo" element={todoElement} />
           <Route path="Blog" element={<Blog />} />
           <Route path="Blog/:id" element={<BlogDetail />} />
-          {/* <Route path="Love" element={<Love />} /> */}
-          <Route path="Love" element={<AddNewBlog />} />
+          <Route path="Love" element={<Love />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

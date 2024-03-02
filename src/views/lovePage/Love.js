@@ -42,9 +42,16 @@ const Love = () => {
         <div>
           Muốn nói gì với tui <br /> <br />
           {/* Sử dụng giá trị của state `love` trong input */}
-          <input value={love} onChange={handleOnChange} />
+          <input
+            className="love-input"
+            value={love}
+            onChange={handleOnChange}
+          />
           <br /> <br />
-          <button onClick={() => handleOnClick()}> Gửi </button>
+          <button className="btn-love" onClick={() => handleOnClick()}>
+            {" "}
+            Gửi{" "}
+          </button>
         </div>
       ) : (
         <div>
@@ -59,7 +66,7 @@ const Love = () => {
           <div>
             {/* Sử dụng className để thêm CSS cho button và sử dụng sự kiện onMouseEnter và onMouseLeave */}
             <button
-              className={checkHV ? "er" : ""}
+              className={checkHV ? "er btn-love" : "btn-love"}
               onClick={() => {
                 handleOnClickbt();
               }}
@@ -67,7 +74,7 @@ const Love = () => {
               {!checkHV ? "Đồng ý" : "Từ Chối"}
             </button>
             <button
-              className={!checkHV ? "er" : ""}
+              className={!checkHV ? "er btn-love" : "btn-love"}
               onMouseEnter={handleHover}
               onMouseLeave={handleLeave}
               onClick={() => {

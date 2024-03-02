@@ -1,41 +1,72 @@
+import axios from "axios";
 import "./SubmitForm.scss";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 
-const AddNewBlog = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    message: "",
-  });
+const AddNewBlogs = (props) => {
+  const [newTitle, setNewTitle] = useState("");
+  const [newContent, setNewContent] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+  const handleChangeTitle = (e) => {
+    setNewTitle(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleChangeContent = (e) => {
+    setNewContent(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission here
-    console.log("Form submitted:", formData);
-    // You can send the form data to the server or perform other actions here
+
+    let data = {
+      title: newTitle,
+      body: newContent,
+      userId: 1,
+    };
+
+    if (!data.title || !data.body) {
+      toast.error("Please enter a title or content");
+      return;
+    }
+
+    let res = await axios.post(
+      "https://jsonplaceholder.typicode.com/posts",
+      data
+    );
+    props.AddNewBlog(res.data);
+    console.log(res.data);
   };
+
   return (
     <div className="submit-form">
-      <h2>Add new blog</h2>
-      <div onSubmit={handleSubmit}>
-        <div>Title:</div>
-        <input type="text" onChange={handleChange} />
-
-        <div>Content:</div>
-        <input type="email" onChange={handleChange} />
-
-        <button type="submit">Submit</button>
-      </div>
+      <h3 style={{ textAlign: "center" }}>Add new blog</h3>
+      <div>Title:</div>
+      <input type="text" value={newTitle} onChange={handleChangeTitle} />
+      <div>Content:</div>
+      <input type="text" value={newContent} onChange={handleChangeContent} />
+      <button
+        className="submit"
+        type="submit"
+        onClick={handleSubmit}
+        style={{ borderRadius: "5px" }}
+      >
+        Submit
+      </button>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };
 
-export default AddNewBlog;
+export default AddNewBlogs;
